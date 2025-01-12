@@ -11,11 +11,11 @@ class Routing {
   static final router = GoRouter(
     initialLocation: '/home',
     routes: [
-      GoRoute(
-        name: 'splash',
-        path: '/',
-        // builder: (context, state) => const SplashScreen(),
-      ),
+      // GoRoute(
+      //   name: 'splash',
+      //   path: '/',
+      //   // builder: (context, state) => const SplashScreen(),
+      // ),
       GoRoute(
         name: 'home',
         path: '/home',
