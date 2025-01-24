@@ -113,7 +113,9 @@ class Settings extends StatelessWidget {
               ),
               const SizedBox(height: 80),
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<HomeCubit>().reset();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal.shade50,
                   shape: RoundedRectangleBorder(

@@ -17,6 +17,7 @@ class Home extends StatelessWidget {
               PageController(initialPage: context.read<HomeCubit>().pageIndex),
           onPageChanged: (pageIndex) {
             ListStorage().saveIntegers("pageIndex", pageIndex);
+            context.read<HomeCubit>().pageIndex = pageIndex;
           },
           itemCount: 30, // 23 pages
           itemBuilder: (context, pageIndex) {

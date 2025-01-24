@@ -37,6 +37,6 @@ class ListStorage {
   }
 
   Future<String> loadString(String name) async {
-    return Routing.prefs.getString(name) ?? "1";
+    return Routing.prefs.getString(name) ?? "0";
   }
 }
