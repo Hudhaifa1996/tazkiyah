@@ -1,0 +1,109 @@
+import 'dart:convert'; // For JSON encoding/decoding
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class SharedPreferencesExample extends StatefulWidget {
+  @override
+  _SharedPreferencesExampleState createState() => _SharedPreferencesExampleState();
+}
+
+class _SharedPreferencesExampleState extends State<SharedPreferencesExample> {
+  late SharedPreferences _prefs;
+  List<List<bool>> _my2DList = List.generate(5, (i) => List.generate(5, (j) => false));
+
+  @override
+  void initState() {
+    super.initState();
+    _load2DList();
+  }
+
+  // Convert the 2D List<bool> to a JSON string
+  String _encode2DList(List<List<bool>> list) {
+    return jsonEncode(list);
+  }
+
+  // Convert the JSON string back to a 2D List<bool>
+  List<List<bool>> _decode2DList(String jsonString) {
+    List<dynamic> jsonList = jsonDecode(jsonString);
+    return jsonList
+        .map((row) => List<bool>.from(row.map((item) => item as bool)))
+        .toList();
+  }
+
+  // Save the 2D List<bool> to SharedPreferences
+  Future<void> _save2DList() async {
+    String encodedList = _encode2DList(_my2DList);
+    await _prefs.setString('my2DList', encodedList);
+  }
+
+  // Load the 2D List<bool> from SharedPreferences
+  Future<void> _load2DList() async {
+    _prefs = await SharedPreferences.getInstance();
+
+    String? encodedList = _prefs.getString('my2DList');
+    if (encodedList != null) {
+      setState(() {
+        _my2DList = _decode2DList(encodedList);
+      });
+    }
+  }
+
+  // Toggle the value of an element in the 2D list
+  void _toggleValue(int row, int col) {
+    setState(() {
+      _my2DList[row][col] = !_my2DList[row][col];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Save and Load 2D List<bool>'),
+      ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: _save2DList,
+            child: Text('Save 2D List to SharedPreferences'),
+          ),
+          ElevatedButton(
+            onPressed: _load2DList,
+            child: Text('Load 2D List from SharedPreferences'),
+          ),
+          Expanded(
+            child: GridView.builder(
+              itemCount: _my2DList.length * _my2DList[0].length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: _my2DList[0].length,
+              ),
+              itemBuilder: (context, index) {
+                int row = index ~/ _my2DList[0].length;
+                int col = index % _my2DList[0].length;
+                return GestureDetector(
+                  onTap: () => _toggleValue(row, col),
+                  child: Container(
+                    margin: EdgeInsets.all(5),
+                    color: _my2DList[row][col] ? Colors.green : Colors.red,
+                    child: Center(
+                      child: Text(
+                        _my2DList[row][col] ? 'True' : 'False',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: SharedPreferencesExample(),
+  ));
+}
