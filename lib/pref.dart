@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:tazkiyah/routing.dart';
 
-class ListStorage {
+class Storage {
   static const String _keyCheckedList = "checked_list";
 
   // Save the list to SharedPreferences
@@ -29,14 +29,6 @@ class ListStorage {
   }
 
   Future<int?> loadIntegers(String name) async {
-    return Routing.prefs.getInt(name) ?? 1;
-  }
-
-  void saveString(String name, String data) {
-    Routing.prefs.setString(name, data);
-  }
-
-  Future<String> loadString(String name) async {
-    return Routing.prefs.getString(name) ?? "0";
+    return Routing.prefs.getInt(name) ?? 0;
   }
 }

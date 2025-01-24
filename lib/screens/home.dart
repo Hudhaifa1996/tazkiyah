@@ -11,12 +11,11 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
-      ListStorage.saveCheckedList(context.read<HomeCubit>().checked);
+      Storage.saveCheckedList(context.read<HomeCubit>().checked);
       return PageView.builder(
-          controller:
-              PageController(initialPage: context.read<HomeCubit>().pageIndex),
+          controller: PageController(initialPage: context.read<HomeCubit>().pageIndex),
           onPageChanged: (pageIndex) {
-            ListStorage().saveIntegers("pageIndex", pageIndex);
+            Storage().saveIntegers("pageIndex", pageIndex);
             context.read<HomeCubit>().pageIndex = pageIndex;
           },
           itemCount: 30, // 23 pages
@@ -42,9 +41,7 @@ class Home extends StatelessWidget {
                     },
                   ),
                 ],
-                title: Text('يوم ${(pageIndex + 1).toString()}',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: 28)),
+                title: Text('يوم ${(pageIndex + 1).toString()}', style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 28)),
                 centerTitle: true,
                 backgroundColor: Colors.teal,
               ),
@@ -58,8 +55,7 @@ class Home extends StatelessWidget {
                         itemCount: 23,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0, vertical: 3.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.0),
                             child: Card(
                               elevation: 4,
                               shadowColor: Colors.tealAccent,
@@ -67,12 +63,9 @@ class Home extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
                               child: CheckboxListTile(
-                                value: context
-                                    .read<HomeCubit>()
-                                    .checked[pageIndex][index],
+                                value: context.read<HomeCubit>().checked[pageIndex][index],
                                 onChanged: (newValue) {
-                                  context.read<HomeCubit>().checked[pageIndex]
-                                      [index] = newValue!;
+                                  context.read<HomeCubit>().checked[pageIndex][index] = newValue!;
                                   context.read<HomeCubit>().check();
                                 },
                                 title: Text(
@@ -89,8 +82,7 @@ class Home extends StatelessWidget {
                         }),
                     const SizedBox(height: 6),
                     Container(
-                      padding:
-                          const EdgeInsets.fromLTRB(60.0, 16.0, 40.0, 16.0),
+                      padding: const EdgeInsets.fromLTRB(60.0, 16.0, 40.0, 16.0),
                       decoration: BoxDecoration(
                         color: Colors.teal.shade50,
                         border: const Border(

@@ -12,10 +12,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-          future: Future.wait([
-            ListStorage.loadCheckedList(),
-            ListStorage().loadIntegers("pageIndex")
-          ]),
+          future: Future.wait([Storage.loadCheckedList(), Storage().loadIntegers("pageIndex")]),
           initialData: 'wait',
           builder: (context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {

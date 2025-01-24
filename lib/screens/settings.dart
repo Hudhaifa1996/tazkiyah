@@ -22,8 +22,7 @@ class Settings extends StatelessWidget {
                 onPressed: () {
                   context.go('/home');
                 }),
-            title: const Text('الاعدادات',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28)),
+            title: const Text('الاعدادات', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28)),
             centerTitle: true,
             backgroundColor: Colors.teal,
           ),
@@ -32,8 +31,7 @@ class Settings extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 50),
-              const Text('حساب النسب المئوية الكلية للصفحات',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20)),
+              const Text('حساب النسب المئوية الكلية للصفحات', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20)),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -47,8 +45,7 @@ class Settings extends StatelessWidget {
                     width: 50,
                     child: TextFormField(
                       onTap: () {},
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 20),
+                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
                       controller: context.read<HomeCubit>().firstController,
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
@@ -83,8 +80,7 @@ class Settings extends StatelessWidget {
                     width: 50,
                     child: TextFormField(
                       onTap: () {},
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 20),
+                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
                       controller: context.read<HomeCubit>().secondController,
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
@@ -126,9 +122,7 @@ class Settings extends StatelessWidget {
                   Icons.delete,
                   size: 20,
                 ),
-                label: const Text('تصفير كل البيانات المخزونة',
-                    style:
-                        TextStyle(fontWeight: FontWeight.w600, fontSize: 20)),
+                label: const Text('تصفير كل البيانات المخزونة', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20)),
               ),
             ],
           ));

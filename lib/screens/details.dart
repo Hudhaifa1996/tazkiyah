@@ -20,8 +20,7 @@ class Details extends StatelessWidget {
               onPressed: () {
                 context.go('/home');
               }),
-          title: const Text('النسب المئوية الكلية',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28)),
+          title: const Text('النسب المئوية الكلية', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28)),
           centerTitle: true,
           backgroundColor: Colors.teal,
         ),
@@ -30,7 +29,6 @@ class Details extends StatelessWidget {
             children: [
               ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
-                  // physics: const AlwaysScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: 23,
                   itemBuilder: (context, index) {
