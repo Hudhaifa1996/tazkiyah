@@ -50,7 +50,7 @@ class Details extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "100%",
+                                "${context.read<HomeCubit>().monthlyRate(index).toStringAsFixed(1).replaceAll(RegExp(r'\.0$'), '')}%",
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -83,7 +83,7 @@ class Details extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "100%",
+                        "${context.read<HomeCubit>().monthlyRatesRate.toStringAsFixed(1).replaceAll(RegExp(r'\.0$'), '')}%",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

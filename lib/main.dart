@@ -7,9 +7,10 @@ import 'di_container.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
-  // final SharedPreferences prefs = await SharedPreferences.getInstance();
-  // Routing.prefs = prefs;
-  runApp(MaterialApp.router(
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  Routing.prefs = prefs;
+  runApp(
+    MaterialApp.router(
       routerConfig: Routing.router,
       debugShowCheckedModeBanner: false,
     ),

@@ -5,21 +5,28 @@ import 'package:tazkiyah/cubits/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:tazkiyah/screens/details.dart';
 import 'package:tazkiyah/screens/settings.dart';
+import 'package:tazkiyah/screens/splash.dart';
 import 'di_container.dart';
 import 'screens/home.dart';
+
 HomeCubit _homeCubit = locator<HomeCubit>();
 
 class Routing {
   static late final SharedPreferences prefs;
-
   static final router = GoRouter(
-    initialLocation: '/details',
+    initialLocation: '/',
     routes: [
-      // GoRoute(
-      //   name: 'splash',
-      //   path: '/',
-      //   // builder: (context, state) => const SplashScreen(),
-      // ),
+      GoRoute(
+        name: 'splash',
+        path: '/',
+        builder: (context, state) => Directionality(
+          textDirection: TextDirection.rtl,
+          child: BlocProvider.value(
+            value: _homeCubit,
+            child: const SplashScreen(),
+          ),
+        ),
+      ),
       GoRoute(
         name: 'home',
         path: '/home',
@@ -49,7 +56,7 @@ class Routing {
           textDirection: TextDirection.rtl,
           child: BlocProvider.value(
             value: _homeCubit,
-            child:  Settings(),
+            child: const Settings(),
           ),
         ),
       ),
